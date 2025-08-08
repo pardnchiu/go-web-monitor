@@ -81,12 +81,56 @@ func (m *Monitor) Check(url string) model.Website {
 		url = "https://" + url
 	}
 
-	// * 超時 5 秒
 	client := &http.Client{
-		Timeout: 5 * time.Second,
+		Timeout: 10 * time.Second,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return nil // 允許重定向
+		},
 	}
 
-	res, err := client.Get(url)
+	req, err := http.NewRequest("HEAD", url, nil)
+	if err != nil {
+		return model.Website{
+			URL:       url,
+			Code:      0,
+			Duration:  time.Since(start),
+			Online:    false,
+			LastCheck: time.Now(),
+			Expire:    0,
+		}
+	}
+
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36")
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("Connection", "keep-alive")
+
+	res, err := client.Do(req)
+
+	// 如果 HEAD 失敗或回傳 404，嘗試 GET
+	if err != nil || res.StatusCode == 404 {
+		if res != nil {
+			res.Body.Close()
+		}
+
+		req, err = http.NewRequest("GET", url, nil)
+		if err != nil {
+			return model.Website{
+				URL:       url,
+				Code:      0,
+				Duration:  time.Since(start),
+				Online:    false,
+				LastCheck: time.Now(),
+				Expire:    0,
+			}
+		}
+
+		req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36")
+		req.Header.Set("Accept", "*/*")
+		req.Header.Set("Connection", "keep-alive")
+
+		res, err = client.Do(req)
+	}
+
 	var expire int
 	if err == nil {
 		expire, _ = util.CheckExpire(url)
