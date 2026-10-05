@@ -14,7 +14,7 @@
 
 ***
 
-> A Go terminal website monitor with SSL expiry tracking, consecutive-failure email alerts, and HEAD-first health probes
+> A Go terminal uptime monitor CLI with HEAD-first website checks, SSL certificate expiry countdown, and consecutive-failure email alerts
 
 ## Table of Contents
 
@@ -59,7 +59,7 @@ This project is licensed under the [MIT LICENSE](LICENSE).
 Just [open an issue](https://github.com/pardnchiu/go-web-monitor/issues/new) to share an idea.
 
 <a href="https://github.com/pardnchiu/go-web-monitor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=pardnchiu/go-web-monitor&cache_bust=2026-10-05" alt="go-web-monitor contributors" />
+  <img src="https://contrib.rocks/image?repo=pardnchiu/go-web-monitor&cache_bust=2026-10-06" alt="go-web-monitor contributors" />
 </a>
 
 ***

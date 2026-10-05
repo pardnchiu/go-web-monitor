@@ -14,7 +14,7 @@
 
 ***
 
-> Go 終端機網站監控工具，具備 SSL 憑證到期追蹤、連續失敗 Email 告警與 HEAD 優先探測
+> Go 終端機網站監控工具，具備 HEAD 優先探測、SSL 憑證到期天數與網站斷線 Email 通知
 
 ## 目錄
 
@@ -59,7 +59,7 @@ graph TB
 Just [open an issue](https://github.com/pardnchiu/go-web-monitor/issues/new) to share an idea.
 
 <a href="https://github.com/pardnchiu/go-web-monitor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=pardnchiu/go-web-monitor&cache_bust=2026-10-05" alt="go-web-monitor contributors" />
+  <img src="https://contrib.rocks/image?repo=pardnchiu/go-web-monitor&cache_bust=2026-10-06" alt="go-web-monitor contributors" />
 </a>
 
 ***
