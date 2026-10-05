@@ -1,2 +1,4 @@
 .DS_Store
 .webMonitor.json
+.doc/
+wiki-worker/
